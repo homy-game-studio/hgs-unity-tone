@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef34473a0e42ed469c943929647d314, type: 3}
   m_Name: AcousticPiano
   m_EditorClassIdentifier: 
-  c3: {fileID: 8300000, guid: 958b3f58a73eb154b97a19f6abd6ab14, type: 3}
+  c: {fileID: 8300000, guid: 958b3f58a73eb154b97a19f6abd6ab14, type: 3}
+  octave: 3

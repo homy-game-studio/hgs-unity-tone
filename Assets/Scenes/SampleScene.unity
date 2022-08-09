@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instrumentPlayer: {fileID: 1848415111}
+  octave: 3
 --- !u!1 &1848415109
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,4 +387,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5908dea61ced5a64a9c4354b3c7f9543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrument: {fileID: 11400000, guid: a277163880bf04148ac853dfac377614, type: 2}
+  instrument: {fileID: 11400000, guid: b672b06c482018842b7481ca65d37c6d, type: 2}

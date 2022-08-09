@@ -5,8 +5,10 @@ namespace HGS.VirtualInstrument.SO
   [CreateAssetMenu(fileName = "Instrument", menuName = "HGS/VirtualInstrument/Instrument")]
   public class Instrument : ScriptableObject
   {
-    [SerializeField] AudioClip c3;
+    [SerializeField] AudioClip c;
+    [SerializeField] int octave = 3;
 
-    public AudioClip C3 => c3;
+    public AudioClip C => c;
+    public int Octave => octave;
   }
 }
