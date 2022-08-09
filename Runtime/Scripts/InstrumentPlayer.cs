@@ -14,18 +14,18 @@ namespace HGS.VirtualInstrument
 
     public bool HasSources => _availableSources.Count > 0;
 
-    public void PlayNote(Note note)
+    public void PlayNote(Note note, int octave = 3)
     {
-      StartCoroutine(PlayNoteCoroutine(note));
+      StartCoroutine(PlayNoteCoroutine(note, octave - instrument.Octave));
     }
 
-    IEnumerator PlayNoteCoroutine(Note note)
+    IEnumerator PlayNoteCoroutine(Note note, int octave)
     {
       var source = HasSources
         ? _availableSources.Dequeue()
         : CreateSource();
 
-      source.pitch = note.Pitch;
+      source.pitch = Octave.NoteToPitch(note, octave);
       source.Play();
 
       yield return new WaitForSeconds(source.clip.length * source.pitch);
@@ -38,7 +38,7 @@ namespace HGS.VirtualInstrument
       var go = new GameObject("NotePlayer");
       go.transform.SetParent(transform);
       var source = go.AddComponent<AudioSource>();
-      source.clip = instrument.C3;
+      source.clip = instrument.C;
       return source;
     }
   }

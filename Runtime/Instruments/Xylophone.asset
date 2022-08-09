@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef34473a0e42ed469c943929647d314, type: 3}
   m_Name: Xylophone
   m_EditorClassIdentifier: 
-  c3: {fileID: 8300000, guid: c02d73d12b3339b4989f44a9f59e0274, type: 3}
+  c: {fileID: 8300000, guid: c02d73d12b3339b4989f44a9f59e0274, type: 3}
+  octave: 3
