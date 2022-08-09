@@ -1,0 +1,17 @@
+{
+  "name": "com.hgs.virtual-instrument",
+  "version": "1.0.0",
+  "displayName": "HGS Virtual Instrument",
+  "description": "Complete tool to work with virtual midi",
+  "unity": "2020.1",
+  "keywords": [
+    "Virtual",
+    "MIDI",
+    "Instrument"
+  ],
+  "author": {
+    "name": "Homy Game Studio",
+    "email": "contato@homygamestudio.com"
+  },
+  "dependencies": {}
+}
