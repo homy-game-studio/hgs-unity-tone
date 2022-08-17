@@ -15,16 +15,8 @@ namespace HGS.Tone
     void Start()
     {
       CreateSynth();
-      CreateAudioSource();
+      CreateDriver();
       LoadFile();
-    }
-
-    void CreateAudioSource()
-    {
-      if (!gameObject.TryGetComponent(out AudioSource source))
-      {
-        gameObject.AddComponent<AudioSource>();
-      }
     }
 
     void CreateSynth()
@@ -45,16 +37,12 @@ namespace HGS.Tone
       _sequencer.Play(midi, isLoop);
     }
 
-    void OnAudioFilterRead(float[] data, int channels)
+    void CreateDriver()
     {
-      var dataLen = data.Length / channels;
+      var driver = gameObject.GetComponent<ToneAudioDriver>();
+      if (driver == null) driver = gameObject.AddComponent<ToneAudioDriver>();
 
-      var sample = new float[data.Length];
-      var right = new float[dataLen];
-
-      _sequencer.RenderInterleaved(sample);
-
-      sample.CopyTo(data, 0);
+      driver.SetRenderer(_sequencer);
     }
   }
 }
