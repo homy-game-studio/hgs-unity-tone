@@ -8,13 +8,14 @@ namespace HGS.Tone
   {
     [SerializeField] string soundFontFile = "GeneralUserGS";
     [SerializeField] int instrumentId = 0;
+
     Synthesizer _synthesizer;
 
     void Start()
     {
       CreateSynth();
+      CreateDriver();
       SetInstrument(instrumentId);
-      CreateAudioSource();
     }
 
     public void TriggerAttack(ToneNote note, int velocity = 100)
@@ -27,14 +28,6 @@ namespace HGS.Tone
       _synthesizer.NoteOff(0, note.Key);
     }
 
-    void CreateAudioSource()
-    {
-      if (!gameObject.TryGetComponent(out AudioSource source))
-      {
-        gameObject.AddComponent<AudioSource>();
-      }
-    }
-
     void CreateSynth()
     {
       var asset = Resources.Load<TextAsset>(soundFontFile);
@@ -44,21 +37,17 @@ namespace HGS.Tone
       _synthesizer = new Synthesizer(soundFont, AudioSettings.outputSampleRate);
     }
 
+    void CreateDriver()
+    {
+      var driver = gameObject.GetComponent<ToneAudioDriver>();
+      if (driver == null) driver = gameObject.AddComponent<ToneAudioDriver>();
+
+      driver.SetRenderer(_synthesizer);
+    }
+
     void SetInstrument(int id)
     {
       _synthesizer.ProcessMidiMessage(0, 0xC0, id, 0);
-    }
-
-    void OnAudioFilterRead(float[] data, int channels)
-    {
-      var dataLen = data.Length / channels;
-
-      var sample = new float[data.Length];
-      var right = new float[dataLen];
-
-      _synthesizer.RenderInterleaved(sample);
-
-      sample.CopyTo(data, 0);
     }
   }
 }
