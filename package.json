@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "displayName": "HGS Tone",
   "description": "Simple tool to play musical notes",
-  "unity": "2020.1",
+  "unity": "2021.3",
   "keywords": [
     "Virtual",
     "Insturment",
