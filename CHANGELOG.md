@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.0.0...v1.1.0) (2022-08-17)
+
+
+### Features
+
+* Add ToneAudioDriver ([53facf9](https://github.com/homy-game-studio/hgs-unity-tone/commit/53facf99644d8ed702dfbd061c409ba8b64184c9))
+* **ToneSequencer:** Render sound with ToneAudioDriver ([cdcc92b](https://github.com/homy-game-studio/hgs-unity-tone/commit/cdcc92b92e4296e506823dbb6c4e3c2111f4d965))
+* **ToneSynth:** Render sound with ToneAudioDriver ([6f7859f](https://github.com/homy-game-studio/hgs-unity-tone/commit/6f7859f79a76005849ae68bff5f8054a96d37e90))
+
 # 1.0.0 (2022-08-17)
 
 
