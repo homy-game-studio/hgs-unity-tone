@@ -1,7 +1,9 @@
 {
-    "name": "HGS.VirtualInstrument.Runtime",
+    "name": "HGS.Tone.Runtime",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:22c446ad4ad97134bb115421ba6bd009"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
