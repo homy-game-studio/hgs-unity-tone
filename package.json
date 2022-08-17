@@ -1,13 +1,13 @@
 {
-  "name": "com.hgs.virtual-instrument",
+  "name": "com.hgs.tone",
   "version": "1.0.0",
-  "displayName": "HGS Virtual Instrument",
-  "description": "Complete tool to work with virtual midi",
+  "displayName": "HGS Tone",
+  "description": "Simple tool to play musical notes",
   "unity": "2020.1",
   "keywords": [
     "Virtual",
-    "MIDI",
-    "Instrument"
+    "Insturment",
+    "Tone"
   ],
   "author": {
     "name": "Homy Game Studio",

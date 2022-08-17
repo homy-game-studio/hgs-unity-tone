@@ -1,1 +1,1 @@
-hgs-virtual-instrument
+hgs-tone
