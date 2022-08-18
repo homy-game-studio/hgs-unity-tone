@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.1.0...v1.2.0) (2022-08-18)
+
+
+### Features
+
+* Add ToneSoundFont ([8d42b03](https://github.com/homy-game-studio/hgs-unity-tone/commit/8d42b03ba6aab14f72991fca4c920c7e500ca41c))
+
 # [1.1.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.0.0...v1.1.0) (2022-08-17)
 
 
