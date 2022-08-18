@@ -6,8 +6,8 @@ namespace HGS.Tone
 {
   public class ToneSequencer : MonoBehaviour
   {
+    [SerializeField] ToneSoundFont soundFont = null;
     [SerializeField] string midiFile = "file";
-    [SerializeField] string soundFontFile = "GeneralUserGS";
     [SerializeField] bool isLoop = false;
     Synthesizer _synthesizer;
     MidiFileSequencer _sequencer;
@@ -16,16 +16,12 @@ namespace HGS.Tone
     {
       CreateSynth();
       CreateDriver();
-      LoadFile();
+      LoadFile(); ;
     }
 
     void CreateSynth()
     {
-      var asset = Resources.Load<TextAsset>(soundFontFile);
-      var stream = new MemoryStream(asset.bytes);
-      var soundFont = new SoundFont(stream);
-
-      _synthesizer = new Synthesizer(soundFont, AudioSettings.outputSampleRate);
+      _synthesizer = new Synthesizer(soundFont.SoundFont, AudioSettings.outputSampleRate);
       _sequencer = new MidiFileSequencer(_synthesizer);
     }
 
