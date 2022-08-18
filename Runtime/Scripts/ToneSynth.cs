@@ -1,4 +1,3 @@
-using System.IO;
 using MeltySynth;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ namespace HGS.Tone
 {
   public class ToneSynth : MonoBehaviour
   {
-    [SerializeField] string soundFontFile = "GeneralUserGS";
+    [SerializeField] ToneSoundFont soundFont = null;
     [SerializeField] int instrumentId = 0;
 
     Synthesizer _synthesizer;
@@ -30,11 +29,7 @@ namespace HGS.Tone
 
     void CreateSynth()
     {
-      var asset = Resources.Load<TextAsset>(soundFontFile);
-      var stream = new MemoryStream(asset.bytes);
-      var soundFont = new SoundFont(stream);
-
-      _synthesizer = new Synthesizer(soundFont, AudioSettings.outputSampleRate);
+      _synthesizer = new Synthesizer(soundFont.SoundFont, AudioSettings.outputSampleRate);
     }
 
     void CreateDriver()
