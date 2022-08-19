@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.3.0...v1.4.0) (2022-08-19)
+
+
+### Features
+
+* **ToneSynth:** Add TriggerAttackAndRelease ([105181e](https://github.com/homy-game-studio/hgs-unity-tone/commit/105181ee2e0b0f0770b96a556334996a1173609d))
+
 # [1.3.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.2.0...v1.3.0) (2022-08-19)
 
 
