@@ -5,6 +5,8 @@
 
 **HGS Tone** is a Synthsizer and Midi Player wrapper of [MeltySinth](https://github.com/sinshu/meltysynth) for Unity. This package turns possible play musical notes from all part of your UnityProject. Click in this image above to see youtube vídeo.
 
+Requires Unity 2021 or bigger.
+
 [![Open Source Midi Player - Unity HGS ToneERE](https://img.youtube.com/vi/aB1sLm0zri8/0.jpg)](https://www.youtube.com/watch?v=aB1sLm0zri8)
 
 ## Playing Musical Notes
