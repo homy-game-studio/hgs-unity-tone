@@ -1,38 +1,155 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![openupm](https://img.shields.io/npm/v/com.hgs.tone?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.hgs.tone/)
 
-## Convenção de Package Name
-A documetnação do Unity recomenda uma convensão especifica para nomes de packages.:
+# Introduction
 
-> Comece com `com.<company-name>`. Por exemplo, um dos pacotes oficiais do Unity é `com.unity.timeline`. 
+**HGS Tone** is a Synthsizer and Midi Player wrapper of [MeltySinth](https://github.com/sinshu/meltysynth) for Unity. This package turns possible play musical notes from all part of your UnityProject. Click in this image above to see youtube vídeo.
 
-Para mais detalhes acesse a [documentação](https://docs.unity3d.com/2020.1/Documentation/Manual/cus-naming.html).
+[![Open Source Midi Player - Unity HGS ToneERE](https://img.youtube.com/vi/aB1sLm0zri8/0.jpg)](https://www.youtube.com/watch?v=aB1sLm0zri8)
 
-Com isso em mente, todos os pacotes da homy para UPM devem seguir o padrão. `com.hgs.my-package-name`. Por exemplo, este template é `com.hgs.upm-template`.
+## Playing Musical Notes
 
-Este nome deve ser especificado em `name` no **package.json**.
+Play note and release after default time
 
-**ATENÇÃO** O nome do package junto e nome do repositório não podem ser alterados! Caso isso aconteça outros packages ou projetos perderão a referencia.
+```cs
+using HGS.Tone
 
-Além do campo `name` existe outro campo chamado `displayName` este pode ser alterado sempre que necessário, este nome aparecerá na janela do Unity Package Manager.
+public class Player: MonoBehaviour
+{
+  [SerializeField] ToneSynth synth;
 
-## Convenção de namespace
-Para isolar os assets de outros scripts isolamos todos no namespace do package `HGS.<package-name>`. Por exemplo, neste package de template usamos `HGS.Template`.
+  void Start()
+  {
+   synth.TriggerAttackAndRelease(ToneNote.Parse("C3"));
+  }
+}
+```
 
-## Convenção de Assembly
-Cada pasta na raiz do package precisa de um AssemblyDefinition, por tanto utilizamos a convenção `HGS.<pacakge-name>.<folder-name>`. Por exemplo, neste projeto possuirmos a pasta Runtime, onde o Assembly é `HGS.Template.Runtime`.
+Play note and release after 3 seconds
+
+```cs
+using HGS.Tone
+
+public class Player: MonoBehaviour
+{
+  [SerializeField] ToneSynth synth;
+
+  void Start()
+  {
+   synth.TriggerAttackAndRelease(ToneNote.Parse("C3"), duration:3);
+  }
+}
+```
+
+Play note with custom release
+
+```cs
+using HGS.Tone
+
+public class Player: MonoBehaviour
+{
+  [SerializeField] ToneSynth synth;
+
+  void Update()
+  {
+    if(Input.GetKeyDown(KeyCode.C)) synth.TriggerAttack(ToneNote.Parse("C3"));
+    if(Input.GetKeyUp(KeyCode.C)) synth.TriggerRelease(ToneNote.Parse("C3"));
+  }
+}
+```
+
+## Changing instrument
+
+Use `MidiInstrumentCode` to access Midi instrument list available.
+
+```cs
+using HGS.Tone
+
+public class Player: MonoBehaviour
+{
+  [SerializeField] ToneSynth synth;
+
+  void Start()
+  {
+    synth.SetInstrument(MidiInstrumentCode.Organ_Accordion);
+  }
+}
+```
+
+## Playing Midi files
+
+From `Resources` folder
+| Attention: for read midi files from resources, you need change file extension from `.midi` to `.bytes`.
+
+```cs
+using HGS.Tone
+
+public class Player: MonoBehaviour
+{
+  [SerializeField] ToneSequencer sequencer;
+
+  void Start()
+  {
+    var path = "you/path/to/midifile";
+    sequencer.Play(path);
+  }
+}
+```
+
+From others sources
+
+```cs
+using HGS.Tone
+
+public class Player: MonoBehaviour
+{
+  [SerializeField] ToneSequencer sequencer;
+
+  void Start()
+  {
+    var bytes = new byte[]{}; // you file bytes
+    var stream = new MemoryStream(bytes);
+    sequencer.Play(stream);
+  }
+}
+```
+
+## Installation
+
+OpenUPM:
+
+`openupm add com.hgs.tone`
+
+Package Manager:
+
+`https://github.com/homy-game-studio/hgs-unity-tone.git#upm`
+
+Or specify version:
+
+`https://github.com/homy-game-studio/hgs-unity-tone.git#1.0.0`
+
+# Samples
+
+You can see all samples directly in **Package Manager** window.
+
+# Contrib
+
+If you found any bugs, have any suggestions or questions, please create an issue on github. If you want to contribute code, fork the project and follow the best practices below, and make a pull request.
+
+## Namespace Convention
+
+To avoid script collisions, all scripts of this package is covered by `HGS.Tone` namespace.
 
 ## Branchs
-Todos os packages devem possuir duas branchs reservadas.:
 
-- `master` -> Aqui guardamos todo material do projeto.
-- `upm` -> Aqui mantemos uma copia do package que se encontra na pasta `Assets/Package`.
+- `master` -> Keeps the unity project to development purposes.
+- `upm` -> Copy of folder content `Assets/Package` to release after pull request in `master`.
 
-Sempre que um merge é feito na branch `unity`, o script de CI  irá criar uma copia da subpasta `Assets/Package` automaticamente na branch `upm`. Portanto é importante que exista uma pasta chamada `Package` dentro de `Assets` para o deploy ocorra com sucesso. 
+Whenever a change is detected on the `master` branch, CI gets the contents of `Assets/Package`, and pushes in `upm` branch.
 
-## Alterando versões de um package
-Utilizamos o plugin [semantic-release](https://github.com/semantic-release/semantic-release) para facilitar o sistema de release e versionamento, portanto, sempre inicie um repositorio na versão 0.0.0, pois este será alterado automaticamente conforme o uso.
+## Commit Convention
 
-Para utilizar o semantic-relase, temos utilizar a seguinte convenção se commits.:
+This package uses [semantic-release](https://github.com/semantic-release/semantic-release) to facilitate the release and versioning system. Please use angular commit convention:
 
 ```
 <type>(<scope>): <short summary>
@@ -44,7 +161,7 @@ Para utilizar o semantic-relase, temos utilizar a seguinte convenção se commit
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
 
-`Type`.: 
+`Type`.:
 
 - build: Changes that affect the build system or external dependencies (example scopes: package system)
 - ci: Changes to our CI configuration files and scripts (example scopes: Circle, - BrowserStack, SauceLabs)
@@ -54,7 +171,3 @@ Para utilizar o semantic-relase, temos utilizar a seguinte convenção se commit
 - perf: A code change that improves performance
 - refactor: A code change that neither fixes a bug nor adds a feature
 - test: Adding missing tests or correcting existing tests
-
-### Observação
-
-Certifique-se de exlcuir todos os meta files caso você copie os arquivos deste repositório e cole em outro lugar, isso evita conflito de meta no unity.
