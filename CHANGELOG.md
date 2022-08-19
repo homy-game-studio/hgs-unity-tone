@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.2.0...v1.3.0) (2022-08-19)
+
+
+### Bug Fixes
+
+* **ToneSynth:** Turns SetInstrument public ([dfe516b](https://github.com/homy-game-studio/hgs-unity-tone/commit/dfe516bab2910611afaed3aa7d22746cd8f59a4f))
+
+
+### Features
+
+* add MidiInstrumentCode ([7ed9c63](https://github.com/homy-game-studio/hgs-unity-tone/commit/7ed9c6365a56d34bb875291e883bfab01bfd9bea))
+* **ToneSequencer:** Add method Play(Stream) ([4142dc3](https://github.com/homy-game-studio/hgs-unity-tone/commit/4142dc377fbf59af48e88118474e54ffe5d46205))
+
 # [1.2.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.1.0...v1.2.0) (2022-08-18)
 
 
