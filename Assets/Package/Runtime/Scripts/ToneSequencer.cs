@@ -7,16 +7,18 @@ namespace HGS.Tone
   public class ToneSequencer : MonoBehaviour
   {
     [SerializeField] ToneSoundFont soundFont = null;
-    [SerializeField] string midiFile = "file";
     [SerializeField] bool isLoop = false;
     Synthesizer _synthesizer;
     MidiFileSequencer _sequencer;
+
+    bool _isPlaying = false;
+
+    bool IsPlaying => _isPlaying;
 
     void Start()
     {
       CreateSynth();
       CreateDriver();
-      LoadFile(); ;
     }
 
     void CreateSynth()
@@ -25,12 +27,25 @@ namespace HGS.Tone
       _sequencer = new MidiFileSequencer(_synthesizer);
     }
 
-    void LoadFile()
+    public void Play(string file)
     {
-      var asset = Resources.Load<TextAsset>(midiFile);
+      var asset = Resources.Load<TextAsset>(file);
       var stream = new MemoryStream(asset.bytes);
+      Play(stream);
+    }
+
+    public void Play(Stream stream)
+    {
+      _sequencer.Stop();
       var midi = new MidiFile(stream);
       _sequencer.Play(midi, isLoop);
+      _isPlaying = true;
+    }
+
+    public void Stop()
+    {
+      _sequencer.Stop();
+      _isPlaying = false;
     }
 
     void CreateDriver()

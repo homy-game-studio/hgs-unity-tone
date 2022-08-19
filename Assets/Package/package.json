@@ -13,5 +13,11 @@
     "name": "Homy Game Studio",
     "email": "contato@homygamestudio.com"
   },
+  "samples": [
+    {
+      "displayName": "Keyboard",
+      "path": "Samples~/Keyboard"
+    }
+  ],
   "dependencies": {}
 }
