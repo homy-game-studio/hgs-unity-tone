@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.5.0...v1.5.1) (2022-08-20)
+
+
+### Bug Fixes
+
+* **ToneSequencer:** Init from Awake ([edee21e](https://github.com/homy-game-studio/hgs-unity-tone/commit/edee21eaae0a05957f9e195ba20fe5628e41dfa8))
+* **ToneSynth:** Init from Awake ([6614dec](https://github.com/homy-game-studio/hgs-unity-tone/commit/6614decaf477273c6422d6d30689351c3096bf45))
+
 # [1.5.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.4.0...v1.5.0) (2022-08-20)
 
 
