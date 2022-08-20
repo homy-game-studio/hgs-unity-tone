@@ -42,6 +42,16 @@ namespace HGS.Tone
       _isPlaying = true;
     }
 
+    public void SetInstrument(int channel, int number)
+    {
+      _synthesizer.ProcessMidiMessage(channel, 0xC0, number, 0);
+    }
+
+    public void SetInstrument(int channel, MidiInstrumentCode instrumentCode)
+    {
+      SetInstrument(channel, (int)instrumentCode);
+    }
+
     public void Stop()
     {
       _sequencer.Stop();
