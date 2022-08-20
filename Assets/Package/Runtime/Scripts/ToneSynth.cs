@@ -12,7 +12,7 @@ namespace HGS.Tone
 
     Synthesizer _synthesizer;
 
-    void Start()
+    void Awake()
     {
       if (loadOnStart) Load();
     }
