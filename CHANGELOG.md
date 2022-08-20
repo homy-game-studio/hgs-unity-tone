@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.4.0...v1.5.0) (2022-08-20)
+
+
+### Features
+
+* **ToneSequencer:** Add SetInstrument method ([844c0c4](https://github.com/homy-game-studio/hgs-unity-tone/commit/844c0c4bf4d95174cb883065728525460a464998))
+
 # [1.4.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.3.0...v1.4.0) (2022-08-19)
 
 
