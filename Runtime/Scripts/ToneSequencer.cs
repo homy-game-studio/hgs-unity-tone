@@ -15,7 +15,7 @@ namespace HGS.Tone
 
     bool IsPlaying => _isPlaying;
 
-    void Start()
+    void Awake()
     {
       CreateSynth();
       CreateDriver();
