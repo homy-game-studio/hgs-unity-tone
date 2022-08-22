@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.5.1...v1.5.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* move sample to Keyboard folder ([ecb6577](https://github.com/homy-game-studio/hgs-unity-tone/commit/ecb6577559ebe0f55b744712407df2427e7f0a8c))
+
 ## [1.5.1](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.5.0...v1.5.1) (2022-08-20)
 
 
