@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace HGS.Tone
 {
-  public class ToneNote
+  public class ToneNote : ICloneable
   {
     static Dictionary<string, int> _codes = new Dictionary<string, int>
     {
@@ -21,14 +22,20 @@ namespace HGS.Tone
       {"B",11},
     };
 
-    public int Key { get; set; }
-    public int NoteNumber => Key % 12;
-    public int Octave => (Key - NoteNumber) / 12;
+    public int Semitones { get; set; }
+    public int NoteNumber => Semitones % 12;
+    public int Octave => (Semitones - NoteNumber) / 12;
 
     public ToneNote() { }
     public ToneNote(int key)
     {
-      Key = key;
+      Semitones = key;
+    }
+
+    public static ToneNote Random(int octave = 4)
+    {
+      var code = UnityEngine.Random.Range(0, 12);
+      return new ToneNote((octave * 12) + code);
     }
 
     public static ToneNote Parse(string content)
@@ -41,7 +48,7 @@ namespace HGS.Tone
 
       var note = new ToneNote
       {
-        Key = _codes[noteName]
+        Semitones = _codes[noteName]
       };
 
       note.AddOctaves(octaves);
@@ -59,6 +66,12 @@ namespace HGS.Tone
       return $"{noteName}{Octave}";
     }
 
+    public ToneNote SetOctave(int value)
+    {
+      Semitones = (value * 12) + NoteNumber;
+      return this;
+    }
+
     public ToneNote AddOctaves(int amount)
     {
       AddSemitones(amount * 12);
@@ -73,14 +86,19 @@ namespace HGS.Tone
 
     public ToneNote RemoveSemitones(int amount)
     {
-      Key -= amount;
+      Semitones -= amount;
       return this;
     }
 
     public ToneNote AddSemitones(int amount)
     {
-      Key += amount;
+      Semitones += amount;
       return this;
+    }
+
+    public object Clone()
+    {
+      return this.MemberwiseClone();
     }
   }
 }
