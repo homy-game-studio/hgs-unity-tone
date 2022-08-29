@@ -25,13 +25,13 @@ namespace HGS.Tone.Testing
       Assert.AreEqual(3, noteB.Octave);
 
       // Code
-      Assert.AreEqual(36, noteC.Key); // 36 = 3 * 12 + 0
-      Assert.AreEqual(38, noteD.Key); // 38 = 3 * 12 + 2
-      Assert.AreEqual(40, noteE.Key); // 40 = 3 * 12 + 4
-      Assert.AreEqual(41, noteF.Key); // 41 = 3 * 12 + 5
-      Assert.AreEqual(43, noteG.Key); // 43 = 3 * 12 + 7
-      Assert.AreEqual(45, noteA.Key); // 45 = 3 * 12 + 9
-      Assert.AreEqual(47, noteB.Key); // 47 = 3 * 12 + 11
+      Assert.AreEqual(36, noteC.Semitones); // 36 = 3 * 12 + 0
+      Assert.AreEqual(38, noteD.Semitones); // 38 = 3 * 12 + 2
+      Assert.AreEqual(40, noteE.Semitones); // 40 = 3 * 12 + 4
+      Assert.AreEqual(41, noteF.Semitones); // 41 = 3 * 12 + 5
+      Assert.AreEqual(43, noteG.Semitones); // 43 = 3 * 12 + 7
+      Assert.AreEqual(45, noteA.Semitones); // 45 = 3 * 12 + 9
+      Assert.AreEqual(47, noteB.Semitones); // 47 = 3 * 12 + 11
     }
 
     [Test]
