@@ -17,6 +17,10 @@
     {
       "displayName": "Keyboard",
       "path": "Samples~/Keyboard"
+    },
+    {
+      "displayName": "ProceduralMusic",
+      "path": "Samples~/ProceduralMusic"
     }
   ],
   "dependencies": {}
