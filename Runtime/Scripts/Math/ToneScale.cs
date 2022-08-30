@@ -28,7 +28,7 @@ namespace HGS.Tone
     public static readonly ToneScale DiminishedTriad = new ToneScale
     {
       Code = "dim",
-      Intervals = new List<int> { 0, 3, 5 }
+      Intervals = new List<int> { 0, 3, 6 }
     };
 
     public static readonly ToneScale MajorSeventh = new ToneScale

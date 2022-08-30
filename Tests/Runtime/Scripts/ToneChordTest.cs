@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace HGS.Tone.Testing
@@ -9,10 +11,17 @@ namespace HGS.Tone.Testing
     {
       var baseNote = ToneNote.Parse("C4");
 
-      var expected = new ToneChord(baseNote, ToneScale.MajorTriad);
-      var current = ToneChord.Parse("C4maj");
+      var currentMaj = new ToneChord(baseNote, ToneScale.MajorTriad);
+      var currentDim = new ToneChord(baseNote, ToneScale.DiminishedTriad);
 
-      Assert.AreEqual(string.Join(",", expected.Notes), string.Join(",", current.Notes));
+      var currentMajNoteNames = currentMaj.Notes.Select(note => note.ToString());
+      var currentDimNoteNames = currentDim.Notes.Select(note => note.ToString());
+
+      var expectedMaj = new List<string> { "C4", "E4", "G4" };
+      var expectedDim = new List<string> { "C4", "D#4", "F#4" };
+
+      Assert.AreEqual(string.Join(",", expectedMaj), string.Join(",", currentMajNoteNames));
+      Assert.AreEqual(string.Join(",", expectedDim), string.Join(",", currentDimNoteNames));
     }
   }
 }
