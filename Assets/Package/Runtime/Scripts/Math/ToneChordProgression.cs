@@ -32,9 +32,33 @@ namespace HGS.Tone
       RomanNotation = new List<string> { "I", "VIII", "VI", "VI", "I", "VIII", "I", "VIII" }
     };
 
+    public static readonly ToneChordProgression I_iii_VIII = new ToneChordProgression
+    {
+      RomanNotation = new List<string> { "I", "iii", "VIII" }
+    };
+
+    public static readonly ToneChordProgression I_v_x_VI = new ToneChordProgression
+    {
+      RomanNotation = new List<string> { "I", "v", "x", "VI" }
+    };
+
+    public static readonly ToneChordProgression I_VI_XIo_VI = new ToneChordProgression
+    {
+      RomanNotation = new List<string> { "I", "VI", "XIo", "VI" }
+    };
+
+    public static readonly ToneChordProgression i_vi7_viii7_i = new ToneChordProgression
+    {
+      RomanNotation = new List<string> { "i", "vi7", "viii7", "i" }
+    };
+
     private static readonly List<ToneChordProgression> _progressions = new List<ToneChordProgression>{
       CircleProgression,
-      EightBarBlues
+      EightBarBlues,
+      I_iii_VIII,
+      I_v_x_VI,
+      I_VI_XIo_VI,
+      i_vi7_viii7_i
     };
 
     public static ToneChordProgression Random()
@@ -45,6 +69,15 @@ namespace HGS.Tone
 
     private ToneScale GetRomanScale(string roman)
     {
+      if (roman.EndsWith("o")) return ToneScale.DiminishedTriad;
+
+      if (roman.EndsWith("7"))
+      {
+        return roman.Any(c => char.IsLower(c))
+          ? ToneScale.MinorSeventh
+          : ToneScale.MajorSeventh;
+      }
+
       return roman.Any(c => char.IsLower(c))
         ? ToneScale.MinorTriad
         : ToneScale.MajorTriad;
@@ -52,7 +85,11 @@ namespace HGS.Tone
 
     private ToneNote GetRomanNote(string roman)
     {
-      return new ToneNote(_romanDict[roman.ToUpper()]);
+      var normalized = roman
+        .Replace("o", "")
+        .Replace("7", "");
+
+      return new ToneNote(_romanDict[normalized.ToUpper()]);
     }
 
     private ToneChord RomanToChord(ToneNote baseNote, string roman)
