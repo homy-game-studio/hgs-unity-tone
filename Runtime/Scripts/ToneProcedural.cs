@@ -82,20 +82,11 @@ namespace HGS.Tone
       for (int i = 0; i < chord.Length; i++) ProcessStyleNotation(i, chord[i], _currentChord.Notes);
       for (int i = 0; i < bass.Length; i++) ProcessStyleNotation(i, bass[i], _currentBassNotes);
 
-      Debug.Log($"Chord: {_currentChord.ToString()}");
-
       _beatCount += 1;
     }
 
     void Update()
     {
-      if (Input.GetKeyDown(KeyCode.Return))
-      {
-        Stop();
-        Generate();
-        Play();
-      }
-
       if (_isPlaying)
       {
         _beatTimer += Time.deltaTime;
