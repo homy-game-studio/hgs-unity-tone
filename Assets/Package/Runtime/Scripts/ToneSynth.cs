@@ -26,12 +26,12 @@ namespace HGS.Tone
 
     public void TriggerAttack(ToneNote note, int velocity = 100)
     {
-      _synthesizer.NoteOn(0, note.Key, velocity);
+      _synthesizer.NoteOn(0, note.Semitones, velocity);
     }
 
     public void TriggerRelease(ToneNote note)
     {
-      _synthesizer.NoteOff(0, note.Key);
+      _synthesizer.NoteOff(0, note.Semitones);
     }
 
     public void TriggerAttackAndRelease(ToneNote note, int velocity = 100, float duration = 0.15f)
@@ -46,9 +46,9 @@ namespace HGS.Tone
       TriggerRelease(note);
     }
 
-    public void TriggerReleaseAll()
+    public void TriggerReleaseAll(bool immediate = false)
     {
-      _synthesizer.NoteOffAll(true);
+      _synthesizer.NoteOffAll(immediate);
     }
 
     void CreateSynth()
