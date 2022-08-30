@@ -1,3 +1,23 @@
+# [1.6.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.5.2...v1.6.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* Add  Math folder .meta ([3335efb](https://github.com/homy-game-studio/hgs-unity-tone/commit/3335efb2da2621d0588199a8e0404110aeea1710))
+
+
+### Features
+
+* Add ChordStyle ([885ab01](https://github.com/homy-game-studio/hgs-unity-tone/commit/885ab01fe5edf4e9805898e75dd8e1110374d9aa))
+* Add ProceduralMusic sample to package.json ([1a8d762](https://github.com/homy-game-studio/hgs-unity-tone/commit/1a8d762c2912101fbf63deb087c52d6c20628b15))
+* Add ProdeduralMusic sample scene ([d6c12d7](https://github.com/homy-game-studio/hgs-unity-tone/commit/d6c12d77bdf34453650870bbf490c0bd0cb614da))
+* Add ToneChord ([a3dfe0a](https://github.com/homy-game-studio/hgs-unity-tone/commit/a3dfe0a3b539826ab8677ab83937a08d05272f76))
+* Add ToneChordProgression ([b371dc3](https://github.com/homy-game-studio/hgs-unity-tone/commit/b371dc38424458c361563f00c465509e3f65502c))
+* Add ToneProcedural ([46555bb](https://github.com/homy-game-studio/hgs-unity-tone/commit/46555bb8735cedc2b414a640ff5cec602ff86147))
+* Add ToneScale ([7a6468a](https://github.com/homy-game-studio/hgs-unity-tone/commit/7a6468a4f9076c625a88c2b70e1c0f004839beee))
+* **ToneChordProgression:** Add more progressions ([c2d754d](https://github.com/homy-game-studio/hgs-unity-tone/commit/c2d754d3a71d8d7a40409a3a1398097c393c87ce))
+* **ToneNote:** Add random  note generator ([d1eb1eb](https://github.com/homy-game-studio/hgs-unity-tone/commit/d1eb1ebca00b60b4f2c528296c2767e92661fbee))
+
 ## [1.5.2](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.5.1...v1.5.2) (2022-08-22)
 
 
