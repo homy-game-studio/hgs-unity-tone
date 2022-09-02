@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.6.0...v1.7.0) (2022-09-02)
+
+
+### Features
+
+* **ToneScale:** Add Random() method ([3ed6312](https://github.com/homy-game-studio/hgs-unity-tone/commit/3ed6312e76942f61217825687d2d3c75b11a033e))
+
 # [1.6.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.5.2...v1.6.0) (2022-08-30)
 
 
