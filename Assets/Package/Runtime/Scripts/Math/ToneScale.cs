@@ -52,6 +52,12 @@ namespace HGS.Tone
       ToneScale.MinorSeventh,
     };
 
+    public static ToneScale Random()
+    {
+      var index = UnityEngine.Random.Range(0, _scales.Count);
+      return _scales[index];
+    }
+
     public static ToneScale Parse(string content)
     {
       return _scales.Find(scale => scale.Code == content);
