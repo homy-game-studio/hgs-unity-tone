@@ -39,7 +39,7 @@ namespace HGS.Tone
 
     public static readonly ToneScale MinorSeventh = new ToneScale
     {
-      Code = "maj7",
+      Code = "min7",
       Intervals = new List<int> { 0, 3, 7, 10 }
     };
 

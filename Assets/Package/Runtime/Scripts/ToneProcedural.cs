@@ -6,6 +6,7 @@ namespace HGS.Tone
   public class ToneProcedural : MonoBehaviour
   {
     [SerializeField] ToneSynth synth = null;
+    [SerializeField] bool isLooping = true;
 
     ToneChordStyle _chordStyle = null;
     List<ToneChord> _chords = new List<ToneChord>();
@@ -16,9 +17,10 @@ namespace HGS.Tone
     bool _isPlaying = false;
 
     int _beatCount = 0;
+    int _totalBeats = 0;
     float _beatTimer = 0;
     float _beatDuration = 0.15f;
-    float _tempo = 8;
+    int _tempo = 8;
 
     public void Stop()
     {
@@ -26,13 +28,25 @@ namespace HGS.Tone
       _beatCount = 0;
       _beatTimer = 0;
       _isPlaying = false;
-      synth.TriggerReleaseAll();
+      synth.TriggerReleaseAll(true);
     }
 
     public void Generate()
     {
-      _chords = ToneChordProgression.Random().Generate(ToneNote.Random());
-      _chordStyle = ToneChordStyle.Random();
+      var baseNote = ToneNote.Random();
+      var progression = ToneChordProgression.Random();
+      var style = ToneChordStyle.Random();
+
+      var chords = progression.Generate(baseNote);
+
+      SetData(chords, style);
+    }
+
+    public void SetData(List<ToneChord> chords, ToneChordStyle style)
+    {
+      _totalBeats = chords.Count * _tempo;
+      _chordStyle = style;
+      _chords = chords;
     }
 
     public void Play()
@@ -57,7 +71,7 @@ namespace HGS.Tone
 
     void ProcessBeat()
     {
-      var beat = (int)(_beatCount % _tempo);
+      var beat = _beatCount % _tempo;
       var canChangeNote = beat == 0;
 
       if (canChangeNote)
@@ -94,6 +108,7 @@ namespace HGS.Tone
         {
           _beatTimer = 0;
           ProcessBeat();
+          if (!isLooping && _beatCount > _totalBeats) Stop();
         }
       }
     }
