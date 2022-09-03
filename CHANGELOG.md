@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.7.0...v1.8.0) (2022-09-03)
+
+
+### Bug Fixes
+
+* **ToneScale:** MinorSeventh changed to min7 ([6945efc](https://github.com/homy-game-studio/hgs-unity-tone/commit/6945efc9ffd124369ef5101b3603e03e3c5dc57b))
+
+
+### Features
+
+* **ToneProcedural:**  Add SetData and improve controls ([396ce32](https://github.com/homy-game-studio/hgs-unity-tone/commit/396ce320a3be9c89671cbb31de4777c28e6c11c7))
+
 # [1.7.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.6.0...v1.7.0) (2022-09-02)
 
 
