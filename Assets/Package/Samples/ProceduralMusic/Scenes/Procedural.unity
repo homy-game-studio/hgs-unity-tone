@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFont: {fileID: 11400000, guid: 5d5f61048c906134a9ad4716e0eaeaca, type: 2}
-  instrumentId: 24
+  instrumentId: 0
   loadOnStart: 1
 --- !u!114 &294734504
 MonoBehaviour:
@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   synth: {fileID: 294734503}
+  isLooping: 1
 --- !u!4 &294734505
 Transform:
   m_ObjectHideFlags: 0
