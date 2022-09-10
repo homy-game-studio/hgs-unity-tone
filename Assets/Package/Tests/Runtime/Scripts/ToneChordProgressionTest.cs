@@ -7,8 +7,10 @@ namespace HGS.Tone.Testing
     [Test]
     public void Generate_Is_Valid()
     {
-      var circleProgressionC = ToneChordProgression.CircleProgression.Generate(ToneNote.Parse("C4"));
-      var circleProgressionD = ToneChordProgression.CircleProgression.Generate(ToneNote.Parse("D2"));
+      var progression = ToneChordProgression.Parse("I-IV-V");
+
+      var circleProgressionC = progression.Generate(ToneNote.Parse("C4"));
+      var circleProgressionD = progression.Generate(ToneNote.Parse("D2"));
 
       var expectedC = "A4min,D4min,G4maj,C4maj";
       var expectedD = "B2min,E2min,A2maj,D2maj";
