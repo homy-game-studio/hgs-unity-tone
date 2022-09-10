@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.8.0...v1.9.0) (2022-09-10)
+
+
+### Features
+
+* **ToneChordProgression:** Add parser ([8a047ad](https://github.com/homy-game-studio/hgs-unity-tone/commit/8a047ad9fbf59fa906751490606148d5642215bf))
+
 # [1.8.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.7.0...v1.8.0) (2022-09-03)
 
 
