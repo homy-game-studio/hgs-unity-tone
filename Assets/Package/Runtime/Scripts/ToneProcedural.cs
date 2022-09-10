@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace HGS.Tone
@@ -34,9 +35,16 @@ namespace HGS.Tone
     public void Generate()
     {
       var baseNote = ToneNote.Random();
-      var progression = ToneChordProgression.Random();
-      var style = ToneChordStyle.Random();
 
+      var progressions = new List<ToneChordProgression>{
+        ToneChordProgression.Parse("I-IV-V-IV"),
+        ToneChordProgression.Parse("I-V-vi-IV"),
+        ToneChordProgression.Parse("i-vi7-iv7-v7"),
+        ToneChordProgression.Parse("I-IV-♭vii°-IV"),
+      };
+
+      var progression = progressions[Random.Range(0, progressions.Count)];
+      var style = ToneChordStyle.Random();
       var chords = progression.Generate(baseNote);
 
       SetData(chords, style);
