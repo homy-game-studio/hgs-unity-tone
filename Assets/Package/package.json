@@ -21,6 +21,10 @@
     {
       "displayName": "ProceduralMusic",
       "path": "Samples~/ProceduralMusic"
+    },
+    {
+      "displayName": "MidiCallback",
+      "path": "Samples~/MidiCallback"
     }
   ],
   "dependencies": {}
