@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.10.0...v1.10.1) (2022-09-13)
+
+
+### Bug Fixes
+
+* Invoke onMidiMessage after ProcessMidiMessage ([7684adf](https://github.com/homy-game-studio/hgs-unity-tone/commit/7684adf0f42892e409ab42a72a0ba8f02b922a5d))
+
 # [1.10.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.9.0...v1.10.0) (2022-09-13)
 
 
