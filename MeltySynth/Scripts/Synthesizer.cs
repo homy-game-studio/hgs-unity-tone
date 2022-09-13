@@ -182,8 +182,6 @@ namespace MeltySynth
         return;
       }
 
-      onMidiMessage?.Invoke(channel, command, data1, data2);
-
       var channelInfo = channels[channel];
 
       switch (command)
@@ -285,6 +283,9 @@ namespace MeltySynth
           channelInfo.SetPitchBend(data1, data2);
           break;
       }
+
+      onMidiMessage?.Invoke(channel, command, data1, data2);
+
     }
 
     /// <summary>
