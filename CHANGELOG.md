@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.10.1...v1.10.2) (2022-09-13)
+
+
+### Bug Fixes
+
+* IL2CPP andorid build ([7ac1ef1](https://github.com/homy-game-studio/hgs-unity-tone/commit/7ac1ef14a735a25828d81b22c1ea2bc3e12dc9d6))
+
 ## [1.10.1](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.10.0...v1.10.1) (2022-09-13)
 
 
