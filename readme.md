@@ -116,6 +116,29 @@ public class Player: MonoBehaviour
 }
 ```
 
+## MidiMessage Events
+
+`ToneSequencer` and `ToneSynth` contains `onMidiMessage`:
+
+```cs
+using HGS.Tone
+
+public class CallbackLogger: MonoBehaviour
+{
+  [SerializeField] ToneSequencer sequencer;
+
+  void Start()
+  {
+    sequencer.onMidiMessage += HandleOnMidiMessage;
+  }
+
+  void HandleOnMidiMessage(int channel, int command, int data1, int data2)
+  {
+    Debug.Log($"MidiMessageCallback: {channel}, {command}, {data1}, {data2}");
+  }
+}
+```
+
 ## Installation
 
 OpenUPM:
