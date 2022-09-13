@@ -1,6 +1,7 @@
 using System.IO;
 using MeltySynth;
 using UnityEngine;
+using static MeltySynth.Synthesizer;
 
 namespace HGS.Tone
 {
@@ -15,6 +16,8 @@ namespace HGS.Tone
 
     bool IsPlaying => _isPlaying;
 
+    public OnMidiMessage onMidiMessage;
+
     void Awake()
     {
       CreateSynth();
@@ -24,6 +27,7 @@ namespace HGS.Tone
     void CreateSynth()
     {
       _synthesizer = new Synthesizer(soundFont.SoundFont, AudioSettings.outputSampleRate);
+      _synthesizer.onMidiMessage = onMidiMessage;
       _sequencer = new MidiFileSequencer(_synthesizer);
     }
 
