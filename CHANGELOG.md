@@ -1,3 +1,13 @@
+# [1.10.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.9.0...v1.10.0) (2022-09-13)
+
+
+### Features
+
+* Add MidiCallback to package.json ([5b86bc3](https://github.com/homy-game-studio/hgs-unity-tone/commit/5b86bc3c4db6f0fd20ce576874f168aed5ab8397))
+* Add OnMidiMessage to MeltySynth ([ad0333d](https://github.com/homy-game-studio/hgs-unity-tone/commit/ad0333dded04eea25196d46128610cdf8dcccc93))
+* **ToneSequencer:** Add OnMidiMessage callback ([e9f3279](https://github.com/homy-game-studio/hgs-unity-tone/commit/e9f3279684a1bd533036df96e215b9be50e7e9a8))
+* **ToneSynth:** Add OnMidiMessage Callback ([31a1a55](https://github.com/homy-game-studio/hgs-unity-tone/commit/31a1a5538b89e538ce8e3fd523a72a0f8b17a5ae))
+
 # [1.9.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.8.0...v1.9.0) (2022-09-10)
 
 
