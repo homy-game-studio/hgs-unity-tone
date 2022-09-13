@@ -1,6 +1,7 @@
 using System.Collections;
 using MeltySynth;
 using UnityEngine;
+using static MeltySynth.Synthesizer;
 
 namespace HGS.Tone
 {
@@ -11,6 +12,8 @@ namespace HGS.Tone
     [SerializeField] bool loadOnStart = false;
 
     Synthesizer _synthesizer;
+
+    public OnMidiMessage onMidiMessage;
 
     void Awake()
     {
@@ -54,6 +57,7 @@ namespace HGS.Tone
     void CreateSynth()
     {
       _synthesizer = new Synthesizer(soundFont.SoundFont, AudioSettings.outputSampleRate);
+      _synthesizer.onMidiMessage = onMidiMessage;
     }
 
     void CreateDriver()
