@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.10.2...v1.11.0) (2025-05-25)
+
+
+### Features
+
+* Update MeltySynth to v2.4.1 ([108bef8](https://github.com/homy-game-studio/hgs-unity-tone/commit/108bef865b24866a7ca3766338076d6288ea45d2))
+
 ## [1.10.2](https://github.com/homy-game-studio/hgs-unity-tone/compare/v1.10.1...v1.10.2) (2022-09-13)
 
 
