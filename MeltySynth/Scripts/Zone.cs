@@ -3,12 +3,18 @@ using System.IO;
 
 namespace MeltySynth
 {
-    internal sealed class Zone
+    internal struct Zone
     {
-        private Generator[] generators;
+        private ArraySegment<Generator> generators;
 
-        private Zone()
+        private Zone(ArraySegment<Generator> generators)
         {
+            this.generators = generators;
+        }
+
+        private Zone(ZoneInfo info, Generator[] generators)
+        {
+            this.generators = new ArraySegment<Generator>(generators, info.GeneratorIndex, info.GeneratorCount);
         }
 
         internal static Zone[] Create(ZoneInfo[] infos, Generator[] generators)
@@ -23,18 +29,14 @@ namespace MeltySynth
 
             for (var i = 0; i < zones.Length; i++)
             {
-                var info = infos[i];
-
-                var zone = new Zone();
-                zone.generators = new Generator[info.GeneratorCount];
-                Array.Copy(generators, info.GeneratorIndex, zone.generators, 0, info.GeneratorCount);
-
-                zones[i] = zone;
+                zones[i] = new Zone(infos[i], generators);
             }
 
             return zones;
         }
 
-        public Generator[] Generators => generators;
+        public static Zone Empty => new Zone(ArraySegment<Generator>.Empty);
+
+        public ArraySegment<Generator> Generators => generators;
     }
 }

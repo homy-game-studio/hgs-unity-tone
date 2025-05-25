@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace MeltySynth
 {
@@ -17,7 +18,8 @@ namespace MeltySynth
                 throw new InvalidDataException("The LIST chunk was not found.");
             }
 
-            var end = reader.BaseStream.Position + reader.ReadInt32();
+            var end = (long)reader.ReadInt32();
+            end += reader.BaseStream.Position;
 
             var listType = reader.ReadFourCC();
             if (listType != "sdta")
@@ -49,6 +51,11 @@ namespace MeltySynth
             if (samples == null)
             {
                 throw new InvalidDataException("No valid sample data was found.");
+            }
+
+            if (Encoding.ASCII.GetString(MemoryMarshal.Cast<short, byte>(samples).Slice(0, 4)) == "OggS")
+            {
+                throw new NotSupportedException("SoundFont3 is not yet supported.");
             }
 
             if (!BitConverter.IsLittleEndian)
