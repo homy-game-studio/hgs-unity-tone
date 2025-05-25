@@ -17,7 +17,8 @@ namespace MeltySynth
                 throw new InvalidDataException("The LIST chunk was not found.");
             }
 
-            var end = reader.BaseStream.Position + reader.ReadInt32();
+            var end = (long)reader.ReadInt32();
+            end += reader.BaseStream.Position;
 
             var listType = reader.ReadFourCC();
             if (listType != "pdta")
@@ -25,12 +26,12 @@ namespace MeltySynth
                 throw new InvalidDataException($"The type of the LIST chunk must be 'pdta', but was '{listType}'.");
             }
 
-            PresetInfo[] presetInfos = null;
-            ZoneInfo[] presetBag = null;
-            Generator[] presetGenerators = null;
-            InstrumentInfo[] instrumentInfos = null;
-            ZoneInfo[] instrumentBag = null;
-            Generator[] instrumentGenerators = null;
+            PresetInfo[]? presetInfos = null;
+            ZoneInfo[]? presetBag = null;
+            Generator[]? presetGenerators = null;
+            InstrumentInfo[]? instrumentInfos = null;
+            ZoneInfo[]? instrumentBag = null;
+            Generator[]? instrumentGenerators = null;
 
             while (reader.BaseStream.Position < end)
             {

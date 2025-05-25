@@ -14,13 +14,20 @@ namespace MeltySynth
         private int genre;
         private int morphology;
 
-        private PresetInfo()
+        private PresetInfo(BinaryReader reader)
         {
+            name = reader.ReadFixedLengthString(20);
+            patchNumber = reader.ReadUInt16();
+            bankNumber = reader.ReadUInt16();
+            zoneStartIndex = reader.ReadUInt16();
+            library = reader.ReadInt32();
+            genre = reader.ReadInt32();
+            morphology = reader.ReadInt32();
         }
 
         internal static PresetInfo[] ReadFromChunk(BinaryReader reader, int size)
         {
-            if (size % 38 != 0)
+            if (size == 0 || size % 38 != 0)
             {
                 throw new InvalidDataException("The preset list is invalid.");
             }
@@ -31,16 +38,7 @@ namespace MeltySynth
 
             for (var i = 0; i < count; i++)
             {
-                var preset = new PresetInfo();
-                preset.name = reader.ReadFixedLengthString(20);
-                preset.patchNumber = reader.ReadUInt16();
-                preset.bankNumber = reader.ReadUInt16();
-                preset.zoneStartIndex = reader.ReadUInt16();
-                preset.library = reader.ReadInt32();
-                preset.genre = reader.ReadInt32();
-                preset.morphology = reader.ReadInt32();
-
-                presets[i] = preset;
+                presets[i] = new PresetInfo(reader);
             }
 
             for (var i = 0; i < count - 1; i++)

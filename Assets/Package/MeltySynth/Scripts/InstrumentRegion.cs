@@ -12,13 +12,13 @@ namespace MeltySynth
     /// </remarks>
     public sealed class InstrumentRegion
     {
-        internal static readonly InstrumentRegion Default = new InstrumentRegion(Instrument.Default, null, null, null);
-
-        private readonly SampleHeader sample;
+        internal static readonly InstrumentRegion Default = new InstrumentRegion();
 
         private readonly short[] gs;
 
-        private InstrumentRegion(Instrument instrument, Generator[] global, Generator[] local, SampleHeader[] samples)
+        private readonly SampleHeader sample;
+
+        private InstrumentRegion()
         {
             gs = new short[61];
             gs[(int)GeneratorType.InitialFilterCutoffFrequency] = 13500;
@@ -41,55 +41,43 @@ namespace MeltySynth
             gs[(int)GeneratorType.ScaleTuning] = 100;
             gs[(int)GeneratorType.OverridingRootKey] = -1;
 
-            if (global != null)
+            sample = SampleHeader.Default;
+        }
+
+        private InstrumentRegion(Instrument instrument, Zone global, Zone local, SampleHeader[] samples) : this()
+        {
+            foreach (var generator in global.Generators)
             {
-                foreach (var parameter in global)
-                {
-                    SetParameter(parameter);
-                }
+                SetParameter(generator);
             }
 
-            if (local != null)
+            foreach (var generator in local.Generators)
             {
-                foreach (var parameter in local)
-                {
-                    SetParameter(parameter);
-                }
+                SetParameter(generator);
             }
 
-            if (samples != null)
+            var id = gs[(int)GeneratorType.SampleID];
+            if (!(0 <= id && id < samples.Length))
             {
-                var id = gs[(int)GeneratorType.SampleID];
-                if (!(0 <= id && id < samples.Length))
-                {
-                    throw new InvalidDataException($"The instrument '{instrument.Name}' contains an invalid sample ID '{id}'.");
-                }
-                sample = samples[id];
+                throw new InvalidDataException($"The instrument '{instrument.Name}' contains an invalid sample ID '{id}'.");
             }
-            else
-            {
-                sample = SampleHeader.Default;
-            }
+
+            sample = samples[id];
         }
 
         internal static InstrumentRegion[] Create(Instrument instrument, Span<Zone> zones, SampleHeader[] samples)
         {
-            Zone global = null;
-
             // Is the first one the global zone?
-            if (zones[0].Generators.Length == 0 || zones[0].Generators.Last().Type != GeneratorType.SampleID)
+            if (zones[0].Generators.Count == 0 || zones[0].Generators.Last().Type != GeneratorType.SampleID)
             {
                 // The first one is the global zone.
-                global = zones[0];
-            }
+                var global = zones[0];
 
-            if (global != null)
-            {
                 // The global zone is regarded as the base setting of subsequent zones.
                 var regions = new InstrumentRegion[zones.Length - 1];
                 for (var i = 0; i < regions.Length; i++)
                 {
-                    regions[i] = new InstrumentRegion(instrument, global.Generators, zones[i + 1].Generators, samples);
+                    regions[i] = new InstrumentRegion(instrument, global, zones[i + 1], samples);
                 }
                 return regions;
             }
@@ -99,20 +87,20 @@ namespace MeltySynth
                 var regions = new InstrumentRegion[zones.Length];
                 for (var i = 0; i < regions.Length; i++)
                 {
-                    regions[i] = new InstrumentRegion(instrument, null, zones[i].Generators, samples);
+                    regions[i] = new InstrumentRegion(instrument, Zone.Empty, zones[i], samples);
                 }
                 return regions;
             }
         }
 
-        private void SetParameter(Generator parameter)
+        private void SetParameter(Generator generator)
         {
-            var index = (int)parameter.Type;
+            var index = (int)generator.Type;
 
             // Unknown generators should be ignored.
             if (0 <= index && index < gs.Length)
             {
-                gs[index] = (short)parameter.Value;
+                gs[index] = (short)generator.Value;
             }
         }
 
