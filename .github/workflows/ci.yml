@@ -10,25 +10,33 @@ permissions:
   pull-requests: write
 
 jobs:
-  release:
-    name: release
+  semantic-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
       - name: Semantic release
         id: semantic
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v4
         with:
-          extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/git
-          branch: master
+          semantic_version: 17
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+
+  deploy-upm:
+    needs: semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Create upm branch
         run: |
           git branch -d upm &> /dev/null || echo upm branch not found
@@ -45,9 +53,7 @@ jobs:
         env:
           PKG_ROOT: Assets/Package
       - name: Create upm git tag
-        if: steps.semantic.outputs.new_release_published == 'true'
+        if: needs.semantic-release.outputs.new_release_published == 'true'
         run: |
-          git tag $TAG upm
+          git tag ${{ needs.semantic-release.outputs.new_release_version }} upm
           git push origin --tags
-        env:
-          TAG: ${{ steps.semantic.outputs.new_release_version }}

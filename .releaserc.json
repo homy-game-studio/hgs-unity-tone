@@ -1,21 +1,11 @@
 {
   "tagFormat": "v${version}",
+  "preset": "angular",
   "plugins": [
-    [
-      "@semantic-release/commit-analyzer",
-      {
-        "preset": "angular"
-      }
-    ],
+    "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
-      {
-        "preset": "angular"
-      }
-    ],
-    [
-      "@semantic-release/npm",
       {
         "npmPublish": false,
         "pkgRoot": "Assets/Package"
