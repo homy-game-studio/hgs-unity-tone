@@ -1,40 +1,41 @@
-﻿using System;
-
-namespace MeltySynth
+﻿namespace MeltySynth
 {
-  internal static class ArrayMath
-  {
-    public static void MultiplyAdd(float a, float[] x, float[] destination)
+    internal static class ArrayMath
     {
-      for (var i = 0; i < destination.Length; i++)
-      {
-        destination[i] += a * x[i];
-      }
+        public static void MultiplyAdd(float a, float[] x, float[] destination)
+        {
+            for (var i = 0; i < destination.Length; i++)
+            {
+                destination[i] += a * x[i];
+            }
+            
+            // Disabled to work with unity IL2CPP
+            /*
+            var vx = MemoryMarshal.Cast<float, Vector<float>>(x);
+            var vd = MemoryMarshal.Cast<float, Vector<float>>(destination);
 
-      // var vx = MemoryMarshal.Cast<float, Vector<float>>(x);
-      // var vd = MemoryMarshal.Cast<float, Vector<float>>(destination);
+            var count = 0;
 
-      // var count = 0;
+            for (var i = 0; i < vd.Length; i++)
+            {
+                vd[i] += a * vx[i];
+                count += Vector<float>.Count;
+            }
 
-      // for (var i = 0; i < vd.Length; i++)
-      // {
-      //   vd[i] += a * vx[i];
-      //   count += Vector<float>.Count;
-      // }
+            for (var i = count; i < destination.Length; i++)
+            {
+                destination[i] += a * x[i];
+            }
+            */
+        }
 
-      // for (var i = count; i < destination.Length; i++)
-      // {
-      //   destination[i] += a * x[i];
-      // }
+        public static void MultiplyAdd(float a, float step, float[] x, float[] destination)
+        {
+            for (var i = 0; i < destination.Length; i++)
+            {
+                destination[i] += a * x[i];
+                a += step;
+            }
+        }
     }
-
-    public static void MultiplyAdd(float a, float step, float[] x, float[] destination)
-    {
-      for (var i = 0; i < destination.Length; i++)
-      {
-        destination[i] += a * x[i];
-        a += step;
-      }
-    }
-  }
 }

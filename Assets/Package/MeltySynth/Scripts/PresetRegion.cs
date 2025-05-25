@@ -12,67 +12,55 @@ namespace MeltySynth
     /// </remarks>
     public sealed class PresetRegion
     {
-        internal static readonly PresetRegion Default = new PresetRegion(Preset.Default, null, null, null);
-
-        private readonly Instrument instrument;
+        internal static readonly PresetRegion Default = new PresetRegion();
 
         private readonly short[] gs;
 
-        private PresetRegion(Preset preset, Generator[] global, Generator[] local, Instrument[] instruments)
+        private readonly Instrument instrument;
+
+        private PresetRegion()
         {
             gs = new short[61];
             gs[(int)GeneratorType.KeyRange] = 0x7F00;
             gs[(int)GeneratorType.VelocityRange] = 0x7F00;
 
-            if (global != null)
+            instrument = Instrument.Default;
+        }
+
+        private PresetRegion(Preset preset, Zone global, Zone local, Instrument[] instruments) : this()
+        {
+            foreach (var generator in global.Generators)
             {
-                foreach (var parameter in global)
-                {
-                    SetParameter(parameter);
-                }
+                SetParameter(generator);
             }
 
-            if (local != null)
+            foreach (var generator in local.Generators)
             {
-                foreach (var parameter in local)
-                {
-                    SetParameter(parameter);
-                }
+                SetParameter(generator);
             }
 
-            if (instruments != null)
+            var id = gs[(int)GeneratorType.Instrument];
+            if (!(0 <= id && id < instruments.Length))
             {
-                var id = gs[(int)GeneratorType.Instrument];
-                if (!(0 <= id && id < instruments.Length))
-                {
-                    throw new InvalidDataException($"The preset '{preset.Name}' contains an invalid instrument ID '{id}'.");
-                }
-                instrument = instruments[id];
+                throw new InvalidDataException($"The preset '{preset.Name}' contains an invalid instrument ID '{id}'.");
             }
-            else
-            {
-                instrument = Instrument.Default;
-            }
+
+            instrument = instruments[id];
         }
 
         internal static PresetRegion[] Create(Preset preset, Span<Zone> zones, Instrument[] instruments)
         {
-            Zone global = null;
-
             // Is the first one the global zone?
-            if (zones[0].Generators.Length == 0 || zones[0].Generators.Last().Type != GeneratorType.Instrument)
+            if (zones[0].Generators.Count == 0 || zones[0].Generators.Last().Type != GeneratorType.Instrument)
             {
                 // The first one is the global zone.
-                global = zones[0];
-            }
+                var global = zones[0];
 
-            if (global != null)
-            {
                 // The global zone is regarded as the base setting of subsequent zones.
                 var regions = new PresetRegion[zones.Length - 1];
                 for (var i = 0; i < regions.Length; i++)
                 {
-                    regions[i] = new PresetRegion(preset, global.Generators, zones[i + 1].Generators, instruments);
+                    regions[i] = new PresetRegion(preset, global, zones[i + 1], instruments);
                 }
                 return regions;
             }
@@ -82,20 +70,20 @@ namespace MeltySynth
                 var regions = new PresetRegion[zones.Length];
                 for (var i = 0; i < regions.Length; i++)
                 {
-                    regions[i] = new PresetRegion(preset, null, zones[i].Generators, instruments);
+                    regions[i] = new PresetRegion(preset, Zone.Empty, zones[i], instruments);
                 }
                 return regions;
             }
         }
 
-        private void SetParameter(Generator parameter)
+        private void SetParameter(Generator generator)
         {
-            var index = (int)parameter.Type;
+            var index = (int)generator.Type;
 
             // Unknown generators should be ignored.
             if (0 <= index && index < gs.Length)
             {
-                gs[index] = (short)parameter.Value;
+                gs[index] = (short)generator.Value;
             }
         }
 

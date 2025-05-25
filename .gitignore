@@ -26,6 +26,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Unity temp folder
+.utmp/
+
 # Gradle cache directory
 .gradle/
 
