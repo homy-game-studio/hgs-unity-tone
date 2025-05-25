@@ -1,20 +1,16 @@
-﻿using System;
-using System.Numerics;
-using System.Runtime.InteropServices;
-
-namespace MeltySynth
+﻿namespace MeltySynth
 {
     internal static class ArrayMath
     {
         public static void MultiplyAdd(float a, float[] x, float[] destination)
         {
-            /*
             for (var i = 0; i < destination.Length; i++)
             {
                 destination[i] += a * x[i];
             }
-            */
-
+            
+            // Disabled to work with unity IL2CPP
+            /*
             var vx = MemoryMarshal.Cast<float, Vector<float>>(x);
             var vd = MemoryMarshal.Cast<float, Vector<float>>(destination);
 
@@ -30,6 +26,7 @@ namespace MeltySynth
             {
                 destination[i] += a * x[i];
             }
+            */
         }
 
         public static void MultiplyAdd(float a, float step, float[] x, float[] destination)
